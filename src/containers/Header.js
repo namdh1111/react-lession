@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {logout} from "../store/auth";
 const Header = (props) => {
+  const dispatch = useDispatch()
   return (
     <>
       <Navbar bg="primary" variant="dark" expand="lg">
@@ -29,7 +32,7 @@ const Header = (props) => {
               <Nav.Link as={NavLink} to="/#">
                 Welcom to ...
               </Nav.Link>
-              <Nav.Link as={Link} to="/login">
+              <Nav.Link onClick={() => dispatch(logout())}>
                 <i className="bi-box-arrow-right"></i>
               </Nav.Link>
             </Nav>

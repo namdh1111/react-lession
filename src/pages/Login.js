@@ -3,11 +3,13 @@ import "./Login.css";
 import Input from "./../components/Input";
 import { useNavigate } from "react-router-dom";
 import userService from "../services/userService";
+import {useDispatch} from "react-redux";
+import {login} from "../store/auth";
 
 const Login = (props) => {
   const [message, setMessage] = useState(""); // state
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const usernameRef = useRef(); //tạo ra Ref gán vào usernameref
   const passwordRef = useRef(); //tạo ra Ref gán vào passwordref
 
@@ -20,7 +22,11 @@ const Login = (props) => {
     userService.login(username, password).then((res) => {
       if (res.errorCode === 0) {
         setMessage("");
-        navigate("/home");
+        dispatch(login({
+          token: res.data.accessToken,
+          userInfo: res.data
+        }))
+        navigate("/");
       } else {
         setMessage(res.message);
       }
@@ -59,6 +65,7 @@ const Login = (props) => {
                     type="text"
                     autoComplete="off"
                     placeholder="Enter your username"
+                    lastRow
                     // labelSize = "4"
                   />
                   <Input
@@ -67,6 +74,7 @@ const Login = (props) => {
                     label="Password"
                     type="password"
                     placeholder="Enter your password"
+                    lastRow
                   />
                   {/* 
                     <Input id="txtNote" rows="2" label="Note" /> */}

@@ -7,15 +7,26 @@ import Header from "./Header";
 // import Student from "./../pages/Student";
 // import MajorEdit from "../pages/MajorEdit";
 import routes from "./../routes";
+import {useSelector} from "react-redux";
+import {Navigate} from "react-router";
 const DefaultLayout = (props) => {
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
   return (
     <>
-      <Header />
-      <Routes>
-        {routes.map((route, idx) => (
-          <Route key={idx} path={route.path} element={route.component} />
-        ))}
-      </Routes>
+        {!isLoggedIn ? (
+            <Navigate to="/login" />
+        ):(
+            <>
+                <Header />
+                <Routes>
+                    {routes.map((route, idx) => (
+                        <Route key={idx} path={route.path} element={route.component} />
+                    ))}
+                </Routes>
+            </>
+        )
+        }
+
     </>
   );
 };
