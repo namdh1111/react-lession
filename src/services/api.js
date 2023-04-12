@@ -1,10 +1,12 @@
 import axios from "axios";
+import store from "./../store/reducers/index"
 
 const url = {
   baseUrl: "https://restfulapi.dnd-group.net/api",
   login: "/login",
   majors: "/majors", //bên trái là của js bên phải là của api
-  
+  students: "/student", //bên trái là của js bên phải là của api
+
 };
 
 const instance = axios.create({
@@ -15,7 +17,14 @@ const instance = axios.create({
   },
 });
 
-instance.interceptors.request.use((request) => request);
+instance.interceptors.request.use((request) =>{
+      const state = store.getState();
+      if (state.auth.token){
+        request.headers.Authorization =  `Bearer ${state.auth.token}`
+      }
+      return request;
+}
+);
 
 instance.interceptors.response.use(
   (response) => response.data, // thanh cong

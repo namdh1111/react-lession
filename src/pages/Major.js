@@ -11,7 +11,7 @@ import * as Yup from "yup"
 
 const Major = (props) => {
   const [majors, setMajors] = useState([]); //quan ly danh sach major
-  const [selectedId, setSelectedId] = useState(0); //quan ly danh sach major
+  const [selectedId, setSelectedId] = useState(0); //bien để gán id cho chức năng xóa
   // const [major, setMajor] = useState(defaultMajor); // quan ly 1 doi tuong major
   // const navigate = useNavigate();
   const formilk = useFormik({

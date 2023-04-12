@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../store/auth";
 const Header = (props) => {
+  const userInfo = useSelector((state)=> state.auth.userInfo)
   const dispatch = useDispatch()
   return (
     <>
@@ -30,7 +31,7 @@ const Header = (props) => {
             </Nav>
             <Nav>
               <Nav.Link as={NavLink} to="/#">
-                Welcom to ...
+                Welcom to ... {userInfo.fullName}
               </Nav.Link>
               <Nav.Link onClick={() => dispatch(logout())}>
                 <i className="bi-box-arrow-right"></i>

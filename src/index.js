@@ -12,15 +12,19 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import {Provider} from "react-redux";
-import store from "./store/reducers";
+import store, {persistStore1} from "./store/reducers";
+import {PersistGate} from "redux-persist/integration/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <Provider store={store} >
-      <BrowserRouter>
-          <ToastContainer theme="colored"/>
-           <App />
-      </BrowserRouter>
+        <PersistGate loading={null} persistor={persistStore1}>
+            <BrowserRouter>
+                <ToastContainer theme="colored"/>
+                <App />
+            </BrowserRouter>
+        </PersistGate>
+
     </Provider>
 );
 
