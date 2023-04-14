@@ -14,21 +14,22 @@ const Input = (props) => {
 
         <div className="col-sm">
           {others["rows"] > 1 ? (
-            <textarea
-              ref={inputRef}
-              className="form-control"
-              id={id}
-              {...others}
-            ></textarea>
-          ) : (
-            <input
-              ref={inputRef}
-              id={id}
-              {...others}
-              {...frmField}
-              className={inputClass}
-            />
-          )}
+              <textarea
+                ref={inputRef}
+                className="form-control"
+                id={id}
+                {...others}
+              ></textarea>
+            ) : (
+                <input
+                    ref={inputRef}
+                    id={id}
+                    {...others}
+                    {...frmField}
+                    className={inputClass}
+                />
+            )
+          }
           {errMessage ? <div className="invalid-feedback">{errMessage}</div> : ''}
 
         </div>

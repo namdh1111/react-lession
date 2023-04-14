@@ -5,7 +5,7 @@ const url = {
   baseUrl: "https://restfulapi.dnd-group.net/api",
   login: "/login",
   majors: "/majors", //bên trái là của js bên phải là của api
-  students: "/student", //bên trái là của js bên phải là của api
+  students: "/students", //bên trái là của js bên phải là của api
 
 };
 
